@@ -24,6 +24,7 @@ form {
   align-items: center;
   border: 1px #333 solid;
   text-align: center;
+  position: relative;
 }
 
 .bingo.cut {
@@ -43,8 +44,22 @@ form {
   height: 2cm;
 }
 
+.delete {
+  position: absolute;
+  display: flex;
+  top: .5rem;
+  right: .5rem;
+  font-size: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px #333 solid;
+  cursor: pointer;
+}
+
 @media print {
-  .head {
+  .head, .delete {
     display: none;
   }
 }

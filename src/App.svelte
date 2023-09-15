@@ -17,7 +17,11 @@
   const handleClear = () => {
     words = [];
     localStorage.clear();
-  }
+  };
+
+  const deleteWord = (word) => {
+    words = words.filter(it => it !== word);
+  };
 
   const shuffle = (array) => { 
     for (let i = array.length - 1; i > 0; i--) { 
@@ -50,7 +54,12 @@
 
   <div class="bingo cut" style="grid-template-columns: repeat({grid}, 1fr);">
     {#each words as word}
-      <div>{word}</div>
+      <div>
+        {word}
+        <button type="button" class="delete" on:click={() => deleteWord(word)}>
+          x
+        </button>
+      </div>
     {/each}
   </div>
 
