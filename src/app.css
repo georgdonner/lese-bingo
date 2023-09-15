@@ -1,0 +1,51 @@
+@font-face {
+  font-family: Druckschrift;
+  src: url(assets/Druckschrift_BY_WOK.ttf);
+}
+
+body {
+  font-family: Druckschrift;
+  margin: 1rem;
+}
+
+form {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.bingo {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.bingo > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px #333 solid;
+  text-align: center;
+}
+
+.bingo.cut {
+  font-size: 24pt;
+  width: 26.6cm;
+}
+.bingo.cut > div {
+  height: 2.7cm;
+}
+
+.bingo.board {
+  font-size: 20pt;
+  width: 22.5cm;
+  page-break-before: always;
+}
+.bingo.board > div {
+  height: 2cm;
+}
+
+@media print {
+  .head {
+    display: none;
+  }
+}
