@@ -1,11 +1,16 @@
 <script>
+  import { shuffle, colors } from './utils';
+
   let words = [];
   let word = '';
+
   let boards = '1';
   let grid = '5';
+  let color = shuffle(colors)[0];
+
   let importing = false;
   let importValue = '';
-
+  
   if (localStorage.getItem('words')) {
     words = JSON.parse(localStorage.getItem('words'));
   }
@@ -40,13 +45,8 @@
     localStorage.setItem('words', JSON.stringify(words));
   };
 
-  const shuffle = (array) => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) { 
-      const j = Math.floor(Math.random() * (i + 1)); 
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; 
-    } 
-    return newArray; 
+  const newColor = () => {
+    color = shuffle(colors)[0];
   };
 </script>
 
@@ -78,6 +78,8 @@
 
     <label for="grid">Anzahl Spalten: </label>
     <input bind:value={grid} type="number" name="grid" id="grid" min="2">
+
+    <button on:click={newColor}>Neue Farbe</button>
   </div>
 
   <div class="bingo cut" style="grid-template-columns: repeat({grid}, 1fr);">
@@ -91,8 +93,11 @@
     {/each}
   </div>
 
-  {#each Array(Number(boards)) as i}
-    <div class="bingo board" style="grid-template-columns: repeat({grid}, 1fr);">
+  {#each [...Array(Number(boards)).keys()] as i}
+    <div
+      class="bingo board"
+      style="background-color: {color};grid-template-columns: repeat({grid}, 1fr);"
+    >
       {#each shuffle(words) as word}
         <div>{word}</div>
       {/each}
